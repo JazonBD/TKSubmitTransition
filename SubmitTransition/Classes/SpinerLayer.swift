@@ -12,8 +12,6 @@ class SpinerLayer: CAShapeLayer {
     init(frame:CGRect) {
         super.init()
         
-        self.frame = CGRectMake(0, 0, frame.height, frame.height)
-        
         self.fillColor = nil
         self.strokeColor = spinnerColor.CGColor
         self.lineWidth = 1
@@ -26,10 +24,10 @@ class SpinerLayer: CAShapeLayer {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func layoutSublayers() {
-        super.layoutSublayers()
-        
-        self.updatePath()
+    override var frame: CGRect {
+        didSet {
+            self.updatePath()
+        }
     }
     
     private func updatePath() {
