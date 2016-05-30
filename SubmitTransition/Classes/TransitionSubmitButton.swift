@@ -4,7 +4,7 @@ import UIKit
 @IBDesignable
 public class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningDelegate {
     
-    lazy var spiner: SpinerLayer! = {
+    lazy var spiner: SpinerLayer = {
         let s = SpinerLayer(frame: self.frame)
         self.layer.addSublayer(s)
         return s
@@ -26,6 +26,12 @@ public class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningD
         didSet {
             self.layer.cornerRadius = normalCornerRadius!
         }
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        print("Did layout subviews")
+        self.spiner.frame = self.bounds
     }
 
     var cachedTitle: String?

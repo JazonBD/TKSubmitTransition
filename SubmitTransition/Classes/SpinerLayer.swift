@@ -11,15 +11,9 @@ class SpinerLayer: CAShapeLayer {
     
     init(frame:CGRect) {
         super.init()
-
-        let radius:CGFloat = (frame.height / 2) * 0.5
+        
         self.frame = CGRectMake(0, 0, frame.height, frame.height)
-        let center = CGPointMake(frame.height / 2, bounds.center.y)
-        let startAngle = 0 - M_PI_2
-        let endAngle = M_PI * 2 - M_PI_2
-        let clockwise: Bool = true
-        self.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: clockwise).CGPath
-
+        
         self.fillColor = nil
         self.strokeColor = spinnerColor.CGColor
         self.lineWidth = 1
@@ -30,6 +24,21 @@ class SpinerLayer: CAShapeLayer {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSublayers() {
+        super.layoutSublayers()
+        
+        self.updatePath()
+    }
+    
+    private func updatePath() {
+        let radius:CGFloat = (frame.height / 2) * 0.5
+        let center = CGPointMake(frame.height / 2, bounds.center.y)
+        let startAngle = 0 - M_PI_2
+        let endAngle = M_PI * 2 - M_PI_2
+        let clockwise: Bool = true
+        self.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: CGFloat(startAngle), endAngle: CGFloat(endAngle), clockwise: clockwise).CGPath
     }
     
     func animation() {
