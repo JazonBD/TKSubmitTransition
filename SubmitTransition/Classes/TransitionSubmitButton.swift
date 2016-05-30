@@ -30,8 +30,17 @@ public class TKTransitionSubmitButton : UIButton, UIViewControllerTransitioningD
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        print("Did layout subviews")
-        self.spiner.frame = self.bounds
+        
+        let width = CGRectGetWidth(self.bounds)
+        let height = CGRectGetHeight(self.bounds)
+        
+        self.spiner.frame = height < width
+        ? CGRectMake(CGRectGetMidX(self.bounds) - height / 2, 0, height, height)
+        : CGRectMake(0, CGRectGetMidY(self.bounds) - width / 2, width, width)
+        
+        self.spiner.setNeedsDisplay()
+        
+        print("Changing frame to \(self.spiner.frame )")
     }
 
     var cachedTitle: String?
