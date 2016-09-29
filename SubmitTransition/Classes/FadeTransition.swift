@@ -32,7 +32,7 @@ public class TKFadeInAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         toView.alpha = startingAlpha
         fromView.alpha = 0.8
         
-        containerView!.addSubview(toView)
+        containerView.addSubview(toView)
         
         UIView.animateWithDuration(self.transitionDuration(transitionContext), animations: { () -> Void in
             

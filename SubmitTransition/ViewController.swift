@@ -18,7 +18,7 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
         btn.frame.bottom = self.view.frame.height - 60
         btn.setTitle("Sign in", forState: .Normal)
         btn.titleLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 14)
-        btn.addTarget(self, action: "onTapButton:", forControlEvents: UIControlEvents.TouchUpInside)
+        btn.addTarget(self, action: #selector(ViewController.onTapButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(btn)
 
         self.view.bringSubviewToFront(self.btnFromNib)

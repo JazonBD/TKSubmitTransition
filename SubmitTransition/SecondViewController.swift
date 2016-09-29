@@ -18,7 +18,7 @@ class SecondViewController: UIViewController {
         bg.frame = self.view.frame
         self.view.addSubview(bg)
         
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: "onTapScreen")
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(SecondViewController.onTapScreen))
         bg.userInteractionEnabled = true
         bg.addGestureRecognizer(tapRecognizer)
     }
